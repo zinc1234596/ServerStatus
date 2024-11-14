@@ -20,10 +20,25 @@ services:
       - ./web/json:/usr/share/nginx/html/json
     ports:
       - 35601:35601
-      - 8081:80
+    labels:
+      - "traefik.enable=true"
+      # HTTP 配置
+      - "traefik.http.routers.serverstatus-http.rule=Host(`status.coolu.one`)"
+      - "traefik.http.routers.serverstatus-http.entrypoints=web"
+      - "traefik.http.routers.serverstatus-http.middlewares=https-redirect"
+      # HTTPS 配置
+      - "traefik.http.routers.serverstatus.rule=Host(`status.coolu.one`)"
+      - "traefik.http.routers.serverstatus.entrypoints=websecure"
+      - "traefik.http.routers.serverstatus.tls.certResolver=letsencrypt"
+      # 服务配置
+      - "traefik.http.services.serverstatus.loadbalancer.server.port=80"
+      # HTTPS 重定向
+      - "traefik.http.middlewares.https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.middlewares.https-redirect.redirectscheme.permanent=true"
 
 networks:
   serverstatus-network:
     ipam:
       config:
         - subnet: 172.23.0.0/24
+    external: true
