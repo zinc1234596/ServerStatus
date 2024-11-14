@@ -20,7 +20,7 @@ services:
       - ./web/json:/usr/share/nginx/html/json
     ports:
       - 35601:35601
-      - 8080:80
+      - 8081:80
 
 networks:
   serverstatus-network:
