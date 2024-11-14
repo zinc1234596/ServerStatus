@@ -35,6 +35,11 @@ services:
       # HTTPS 重定向
       - "traefik.http.middlewares.https-redirect.redirectscheme.scheme=https"
       - "traefik.http.middlewares.https-redirect.redirectscheme.permanent=true"
+    environment:
+      - STATUS_USERNAME=${STATUS_USERNAME}
+      - STATUS_PASSWORD=${STATUS_PASSWORD}
+      - STATUS_NAME=${STATUS_NAME}
+      - STATUS_HOST=${STATUS_HOST}
 
 networks:
   serverstatus-network:
