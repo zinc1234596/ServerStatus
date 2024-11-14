@@ -1,0 +1,13 @@
+{
+	"servers": [
+		{
+			"username": "STATUS_USERNAME",
+			"name": "STATUS_NAME",
+			"type": "kvm",
+			"host": "STATUS_HOST",
+			"location": "🇺🇸",
+			"password": "STATUS_PASSWORD",
+			"monthstart": 1
+		}
+	]
+} 

@@ -35,6 +35,10 @@ services:
       # HTTPS 重定向
       - "traefik.http.middlewares.https-redirect.redirectscheme.scheme=https"
       - "traefik.http.middlewares.https-redirect.redirectscheme.permanent=true"
+    ulimits:
+      nofile:
+        soft: 65535
+        hard: 65535
     environment:
       - STATUS_USERNAME=${STATUS_USERNAME}
       - STATUS_PASSWORD=${STATUS_PASSWORD}
